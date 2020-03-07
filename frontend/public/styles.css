@@ -1,0 +1,323 @@
+@charset "UTF-8";
+:root {
+  --width: 100vw;
+  --full-width: 100vw;
+  --angle: -11deg;
+  /*-----------------
+  Magic Number Alert:
+  
+  the 0.09719 is calculated by this formula:
+  tan(11°) / 2
+  11° is the current skewY value.
+  ------------------*/
+  --magic-number: 0.09719;
+  --skew-padding: calc(var(--width) * var(--magic-number));
+  --clip-padding: calc(var(--full-width) * var(--magic-number));
+
+  --bg-one-gradient-start: #654ea3;
+  --bg-one-gradient-end: #eaafc8;
+
+  --bg-two-gradient-start: #ff0084;
+  --bg-two-gradient-end: #33001b;
+  --bg-three-gradient-start: #ff6600;
+  --bg-three-gradient-end: #bd9a00;
+
+  --bg-two-gradient-start: #007;
+  --bg-two-gradient-end: #003;
+
+  --bg-default: #003;
+  --text-color: #fff;
+
+  --placeholder: rgba(255, 255, 255, 0.6);
+
+  --input-form-lines: rgba(255, 255, 255, 0.7);
+
+  --button-hover-text: #460025;
+  --button-hover-text: #bd9a00;
+
+    --confirmation: none;
+}
+@media (min-width: 42em) {
+  :root {
+    --width: 42rem;
+  }
+}
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.diagonal-box {
+  position: relative;
+  padding: var(--skew-padding) 0;
+  margin-top: -1px;
+}
+.diagonal-box:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  transform: skewy(var(--angle));
+  transform-origin: 50% 0;
+  outline: 1px solid transparent;
+  backface-visibility: hidden;
+}
+
+.bg-one:before {
+  background-image: linear-gradient(45deg, var(--bg-one-gradient-start), var(--bg-one-gradient-end));
+}
+
+.bg-two:before {
+  background-image: linear-gradient(-135deg, var(--bg-two-gradient-start), var(--bg-two-gradient-end));
+}
+
+.bg-three:before {
+  background-image: linear-gradient(-135deg, var(--bg-three-gradient-start), var(--bg-three-gradient-end));
+}
+
+.content {
+  max-width: var(--width);
+  margin: 0 auto;
+  padding: 3em;
+  position: relative;
+  /* -----------
+  enable the border to see, that the content
+  perfectly fits into the section withou
+  bleeding into the adjecting areas:
+  ------------ */
+}
+
+/* --------------------
+Presentational Styles 
+-------------------- */
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 100%;
+  transition: font-size 0.2s linear;
+}
+@media (min-width: 70em) {
+  html {
+    font-size: 125%;
+  }
+}
+
+body {
+  background: var(--bg-default);
+  padding-top: 8em;
+  color: var(--text-color);
+  font-family: 'Raleway', sans-serif;
+}
+
+h1 {
+  text-align: center;
+  margin: 0 auto 1em;
+  max-width: 42rem;
+  line-height: 1.2;
+  transform: skewY(var(--angle));
+  font-size: 3em;
+  text-transform: uppercase;
+  font-weight: 900;
+}
+
+h2 {
+  font-size: 2.5em;
+  margin: 0 0 0.5em;
+  font-weight: 900;
+}
+
+.contact-form {
+    font-size: 1.25em;
+    margin: 0em auto 0em;
+    text-align: justify;
+    font-weight: 900;
+    border-radius: 10px;
+}
+
+
+input {
+    line-height: normal;
+}
+
+textarea {
+    overflow: auto;
+}
+
+::placeholder {
+    color: var(--placeholder);
+}
+
+#confirmation {
+    display: var(--confirmation);
+}
+
+input[type='text'], [type='email'], select, textarea {
+	background: none;
+    border: solid 2px rgba(255, 255, 255, 0);
+	border-bottom: solid 2px var(--input-form-lines);
+	color: var(--text-color);
+	font-size: 1.000em;
+    font-weight: 400;
+    letter-spacing: 1px;
+    margin-bottom: 0.5em;
+	padding: 0.575em;
+	width: 100%;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-ms-box-sizing: border-box;
+	-o-box-sizing: border-box;
+	box-sizing: border-box;
+	-webkit-transition: all 0.3s;
+	-moz-transition: all 0.3s;
+	-ms-transition: all 0.3s;
+	-o-transition: all 0.3s;
+	transition: all 0.3s;
+}
+
+input[type='text']:focus, [type='email']:focus, textarea:focus {
+    outline: none;
+    border-radius: 10px;
+    border: solid 2px var(--text-color);
+}
+
+#theme-button {
+    background: none;
+    border: solid 2px var(--input-form-lines);
+    color: var(--input-form-lines);
+    border-radius: 10px;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 0.875em;
+    font-weight: bold;
+    outline: none;
+    margin-bottom: 0.5em;
+	padding: 0.575em 1em 0.575em 1em;
+    text-transform: uppercase;
+    -webkit-transition: all 0.3s;
+      -moz-transition: all 0.3s;
+      -ms-transition: all 0.3s;
+      -o-transition: all 0.3s;
+      transition: all 0.3s;
+}
+
+#form-button {
+    background: none;
+    border: solid 2px var(--input-form-lines);
+    color: var(--input-form-lines);
+    border-radius: 10px;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 0.875em;
+    font-weight: bold;
+    outline: none;
+	padding: 0.575em 1em 0.575em 1em;
+    text-transform: uppercase;
+    -webkit-transition: all 0.3s;
+      -moz-transition: all 0.3s;
+      -ms-transition: all 0.3s;
+      -o-transition: all 0.3s;
+      transition: all 0.3s;
+  }
+  
+  #form-button:hover {
+    background-color: var(--text-color);
+    border: solid 2px var(--text-color);
+    color: var(--button-hover-text);
+  }
+
+.intro {
+  font-size: 1.25em;
+  transform: skewY(var(--angle));
+  margin: 0em auto 0em;
+  text-align: center;
+  background: var(--text-color);
+  color: var(--bg-default);
+  font-weight: 900;
+  padding: 0.5em;
+  text-transform: uppercase;
+  border-radius: 10px;
+}
+
+p {
+  font-size: 1.25em;
+  margin: 0;
+  line-height: 1.5;
+  text-align: justify;
+}
+
+.check {
+    margin: 0;
+    padding: 0;
+    display: none;
+}
+
+#root {
+    margin: 0;
+    padding: 0;
+}
+
+.notification {
+    font-size: 1em;
+    margin: 0;
+    padding-top: 2em;
+    line-height: 1.5;
+}
+
+.gg-smile-sad {
+    display: inline-block;
+    margin: 0 0.25em;
+}
+
+.gg-smile {
+    display: inline-block;
+    margin: 0 0.25em;
+}
+
+svg {
+    height: 1.75em;
+    fill: var(--input-form-lines);
+    -webkit-transition: all 0.3s;
+      -moz-transition: all 0.3s;
+      -ms-transition: all 0.3s;
+      -o-transition: all 0.3s;
+      transition: all 0.3s;
+}
+
+svg:hover {
+    fill: var(--text-color);
+}
+
+.social-link {
+    margin: 0 2em;
+}
+
+.social-links-container {
+    transform: skewY(var(--angle));
+    margin-top: 2em;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+ul {
+    list-style: none;
+    font-size: 1.25em;
+    margin: 0;
+    line-height: 1.5;
+}
+
+textarea {
+    font-family: 'Raleway', sans-serif;
+}
+
+.list-flex-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+
